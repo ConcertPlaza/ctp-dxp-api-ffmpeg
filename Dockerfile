@@ -1,21 +1,13 @@
-FROM oven/bun:latest
+FROM node:20.5.1-alpine AS base
 
 WORKDIR /usr/src/app
 
 # Install system dependencies and clean up to reduce image size
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    gcc \
-    g++ \
-    curl \
-    unixodbc \
-    unixodbc-dev \
-    libodbc1 \
-    ffmpeg \  
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache ffmpeg
 
 COPY . .
 
 
-RUN bun install
+RUN yarn install 
 
-CMD [ "bun", "dev" ]
+CMD [ "yarn", "dev" ]
