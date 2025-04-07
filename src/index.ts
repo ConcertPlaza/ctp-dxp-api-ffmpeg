@@ -1,4 +1,5 @@
 import { Hono } from 'hono';
+import { serve } from '@hono/node-server';
 import { cors } from 'hono/cors';
 import { prettyJSON } from 'hono/pretty-json';
 import { fetchMetadata } from './services';
@@ -34,4 +35,4 @@ api.post('/ffmpeg', async (c) => {
 
 app.route('/api', api);
 
-export default app;
+serve(app);
