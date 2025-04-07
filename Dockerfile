@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM oven/bun:latest
 
 WORKDIR /usr/src/app
 
@@ -8,6 +8,6 @@ RUN apk add --no-cache ffmpeg
 COPY . .
 
 
-RUN yarn install --immutable
+RUN bun install
 
-CMD [ "yarn", "dev" ]
+CMD [ "bun", "dev" ]
